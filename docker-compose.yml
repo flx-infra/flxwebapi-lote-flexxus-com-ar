@@ -1,1 +1,29 @@
+version: '3.6'
 
+services:
+  flxwebapi:
+    image: fabreguesm/flxwebapi:2.8.314
+    networks:
+      - traefik      
+    volumes:
+      - 'node_data:/app/data/'
+      - 'factura_data:/app/factura_electronica/'
+      - 'pdf_data:/app/public/pdf/'
+    deploy:      
+      placement:
+        constraints: ["${NODE}"]          
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}    
+volumes:
+  node_data:
+    name: "${FQDN_NOTDOT}_node-data"
+  factura_data:
+    name: "${FQDN_NOTDOT}_factura-data"
+  pdf_data:
+    name: "${FQDN_NOTDOT}_pdf-data"  
+networks:
+  traefik:
+    external:
+      name: traefik
