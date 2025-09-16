@@ -10,8 +10,7 @@ services:
     volumes:
       - 'node_data:/app/data/'
       - 'factura_data:/app/factura_electronica/'
-      - 'pdf_data:/app/public/pdf/'      
-      - 'firebird_data:/firebird-data'
+      - 'pdf_data:/app/public/pdf/'            
     deploy:      
       placement:
         constraints: ["${NODE}"]          
@@ -25,10 +24,7 @@ volumes:
   factura_data:
     name: "${SERVICE_NAME}_factura-data"
   pdf_data:
-    name: "${SERVICE_NAME}_pdf-data"  
-  firebird_data:
-    external:
-      name: "firebird-flexxus-com-ar_firebird_data" 
+    name: "${SERVICE_NAME}_pdf-data"    
 networks:
   traefik:
     external:
