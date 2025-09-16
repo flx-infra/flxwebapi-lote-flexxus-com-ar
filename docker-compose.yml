@@ -28,7 +28,7 @@ volumes:
     name: "${SERVICE_NAME}_pdf-data"  
   firebird_data:
     external:
-      name: "${SERVICE_NAME}_firebird_data"  
+      name: "firebird-flexxus-com-ar_firebird_data" 
 networks:
   traefik:
     external:
