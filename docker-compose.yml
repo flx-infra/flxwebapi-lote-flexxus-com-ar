@@ -23,10 +23,10 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
-      - firebird_data:/home/sftp-user/firebird-data  
+      - node_data:/home/sftp-user/node-data  
     ports:
       - "2222:22"
-    command: "sftp-user:admin:1001:1001:firebird-data"
+    command: "sftp-user:admin:1001:1001:node-data"
     deploy:
       placement:
         constraints: ["${NODE}"]      
