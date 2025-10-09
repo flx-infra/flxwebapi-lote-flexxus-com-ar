@@ -19,7 +19,18 @@ services:
     logging:
       driver: loki
       options:
-        loki-url: ${LOKI_URL}    
+        loki-url: ${LOKI_URL}  
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - firebird_data:/home/sftp-user/firebird-data  
+    ports:
+      - "2222:22"
+    command: "sftp-user:admin:1001:1001:firebird-data"
+    deploy:
+      placement:
+        constraints: ["${NODE}"]      
+    restart: unless-stopped
 volumes:
   node_data:
     name: "${SERVICE_NAME}_node-data"
